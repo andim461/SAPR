@@ -1,30 +1,20 @@
 import React from 'react';
 import './Header.css';
 import {Button} from '@material-ui/core';
+import {Link, useLocation} from "react-router-dom";
+  
 
 
-interface Iprops {
-    currentWindow: string,
-    handleChange: (newWindow: string) => void,
-}
-
-export default function Header (props:Iprops){
-    const onPreClick = (): void => {
-        props.handleChange('pre');
-    };
-    const onProClick = (): void => {
-        props.handleChange('pro');        
-    };
-    const onPostClick = (): void => {
-        props.handleChange('post');
-    };
+const Header = () =>{
+    let location = useLocation();
     
     
     return (
         <header className='header'>
-            <Button disabled={props.currentWindow === 'pre' ? undefined : true} variant='outlined' color='primary' size='medium' onClick={onPreClick} >Препроцессор</Button>
-            <Button disabled={props.currentWindow === 'pro' ? undefined : true} variant='outlined' color='primary' size='medium' onClick={onProClick} >Процессор</Button>
-            <Button disabled={props.currentWindow === 'post' ? undefined : true} variant='outlined' color='primary' size='medium' onClick={onPostClick} >Постпроцессор</Button>
+            <Button disabled={location.pathname !== '/pre' ? undefined : true} variant='outlined' color='secondary' size='large'  > <Link className='link' to='/pre'>Препроцессор</Link> </Button>
+            <Button disabled={location.pathname !== '/pro' ? undefined : true} variant='outlined' color='secondary' size='large'  > <Link className='link' to='/pro'>Процессор</Link> </Button>
+            <Button disabled={location.pathname !== '/post' ? undefined : true} variant='outlined' color='secondary' size='large' > <Link className='link' to='/post'>Постпроцессор</Link> </Button>
         </header>
     );
 }
+export default Header;

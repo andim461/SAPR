@@ -1,17 +1,32 @@
 import React from 'react';
 import Header from './Header/Header';
 import './App.css';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  
+} from "react-router-dom";
 
 function App() {
-  const [currWindow, setWindow] = React.useState<string>('pre');
-  
-  const handleChangeWindow = (newWindow:string) => {
-    setWindow(newWindow);
-  };
 
   return (
     <div className="App">
-      <Header currentWindow={currWindow} handleChange={handleChangeWindow}/>
+      <Router>
+        <Header  />
+        <Switch>
+          <Route path='/pro'>
+
+          </Route>
+          <Route path='/pre'>
+
+          </Route>
+          <Route path='/post'>
+
+          </Route>
+        </Switch>
+      </Router>
+      
     </div>
   );
 }

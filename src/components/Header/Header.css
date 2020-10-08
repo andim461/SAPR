@@ -6,4 +6,9 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
+    
+}
+.link{
+    color: inherit;
+    text-decoration: none;
 }
