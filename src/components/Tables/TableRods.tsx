@@ -1,9 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, forwardRef} from 'react';
 import MaterialTable from 'material-table';
 import './Tables.css';
-import Add from '@material-ui/icons';
-import { forwardRef } from 'react';
-
 import AddBox from '@material-ui/icons/AddBox';
 import ArrowDownward from '@material-ui/icons/ArrowDownward';
 import Check from '@material-ui/icons/Check';
