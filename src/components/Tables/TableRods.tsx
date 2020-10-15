@@ -61,7 +61,11 @@ const tableIcons: any = {
 	)),
 };
 
-const TableRods = () => {
+interface RodsProps {
+	data: Array<Object>;
+	setData: (data: Array<Object>) => void;
+}
+const TableRods = (props: RodsProps) => {
 	const [columns, setColumns] = useState<Array<Object>>([
 		{
 			title: 'Номер стержня',
@@ -92,14 +96,21 @@ const TableRods = () => {
 			filtering: false,
 			align: 'center',
 		},
+		{
+			title: 'Распределенные нагр-ки',
+			field: 'q',
+			type: 'numeric',
+			filtering: false,
+			align: 'center',
+		},
 	]);
-	const [data, setData] = useState<Array<Object>>([]);
+
 	return (
 		<div className="tableRods">
 			<MaterialTable
 				title="Стержни"
 				columns={columns}
-				data={data}
+				data={props.data}
 				options={{
 					search: false,
 					sorting: false,
@@ -111,7 +122,7 @@ const TableRods = () => {
 					onRowAdd: (newData: any) =>
 						new Promise((resolve, reject) => {
 							setTimeout(() => {
-								setData([...data, newData]);
+								props.setData([...props.data, newData]);
 
 								resolve();
 							}, 1000);
@@ -119,10 +130,10 @@ const TableRods = () => {
 					onRowUpdate: (newData: any, oldData: any) =>
 						new Promise((resolve, reject) => {
 							setTimeout(() => {
-								const dataUpdate = [...data];
+								const dataUpdate = [...props.data];
 								const index = oldData.tableData.id;
 								dataUpdate[index] = newData;
-								setData([...dataUpdate]);
+								props.setData([...dataUpdate]);
 
 								resolve();
 							}, 1000);
@@ -130,10 +141,10 @@ const TableRods = () => {
 					onRowDelete: (oldData: any) =>
 						new Promise((resolve, reject) => {
 							setTimeout(() => {
-								const dataDelete = [...data];
+								const dataDelete = [...props.data];
 								const index = oldData.tableData.id;
 								dataDelete.splice(index, 1);
-								setData([...dataDelete]);
+								props.setData([...dataDelete]);
 
 								resolve();
 							}, 1000);
