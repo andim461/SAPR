@@ -1,0 +1,16 @@
+.tables{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.preBody{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.alert{
+    display: flex;
+    justify-content: center;
+    margin-left: 35%;
+    margin-right: 35%;
+}

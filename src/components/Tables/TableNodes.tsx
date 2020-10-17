@@ -18,7 +18,6 @@ import {
 	Search,
 	ViewColumn,
 } from '@material-ui/icons';
-import RodsData from '../../interfaces/RodsData';
 
 const tableIcons: any = {
 	Add: forwardRef((props, ref: any) => <AddBox {...props} ref={ref} />),
@@ -56,113 +55,30 @@ const tableIcons: any = {
 	)),
 };
 
-interface RodsProps {
-	data: Array<RodsData>;
-	setData: (data: Array<RodsData>) => void;
+interface NodesProps {
+	data: Array<Object>;
+	setData: (data: Array<Object>) => void;
 }
-const TableRods = (props: RodsProps) => {
+
+const TableNodes = (props: NodesProps) => {
 	const [columns, setColumns] = useState<Array<Object>>([
 		{
-			title: '№ стержня',
-			field: 'i',
+			title: '№ узла',
+			field: 'j',
 			type: 'numeric',
-			filtering: false,
 			align: 'center',
-			validate: (data: RodsData) => {
-				if (data.i <= 0) {
-					return 'Введенное число должно быть положительным';
-				} else if (isNaN(data.i)) {
-					return 'Поле не должно быть пустым';
-				} else {
-					return true;
-				}
-			},
 		},
 		{
-			title: 'Длина (см)',
-			field: 'L',
+			title: 'Напряжение',
+			field: 'F',
 			type: 'numeric',
-			filtering: false,
-			validate: (data: RodsData) => {
-				if (data.L <= 0) {
-					return 'Введенное число должно быть положительным';
-				} else if (isNaN(data.L)) {
-					return 'Поле не должно быть пустым';
-				} else {
-					return true;
-				}
-			},
-		},
-		{
-			title: 'Площадь сечения (cм^2)',
-			field: 'A',
-			type: 'numeric',
-			filtering: false,
 			align: 'center',
-			validate: (data: RodsData) => {
-				if (data.A <= 0) {
-					return 'Введенное число должно быть положительным';
-				} else if (isNaN(data.A)) {
-					return 'Поле не должно быть пустым';
-				} else {
-					return true;
-				}
-			},
-		},
-		{
-			title: 'Модуль упругости',
-			field: 'E',
-			type: 'numeric',
-			filtering: false,
-			align: 'center',
-			validate: (data: RodsData) => {
-				if (data.E <= 0) {
-					return 'Введенное число должно быть положительным';
-				} else if (isNaN(data.E)) {
-					return 'Поле не должно быть пустым';
-				} else {
-					return true;
-				}
-			},
-		},
-		{
-			title: 'Допускаемое напряжение',
-			field: 'S',
-			type: 'numeric',
-			filtering: false,
-			align: 'center',
-			validate: (data: RodsData) => {
-				if (data.S <= 0) {
-					return 'Введенное число должно быть положительным';
-				} else if (isNaN(data.S)) {
-					return 'Поле не должно быть пустым';
-				} else {
-					return true;
-				}
-			},
-		},
-		{
-			title: 'Распределенные нагр-ки (Н/м^2)',
-			field: 'q',
-			type: 'numeric',
-			filtering: false,
-			align: 'center',
-			validate: (data: RodsData) => {
-				if (data.q <= 0) {
-					return 'Введенное число должно быть положительным';
-				} else if (isNaN(data.q)) {
-					return 'Поле не должно быть пустым';
-				} else {
-					return true;
-				}
-			},
 		},
 	]);
-
 	return (
-		<div className="tableRods">
+		<div className="tableNodes">
 			<MaterialTable
-				title="Стержни"
+				title="Нагрузки в узлах"
 				columns={columns}
 				data={props.data}
 				options={{
@@ -173,13 +89,12 @@ const TableRods = (props: RodsProps) => {
 				}}
 				icons={tableIcons}
 				editable={{
-					onRowAdd: (newData: any) => {
-						return new Promise((resolve, reject) => {
+					onRowAdd: (newData: any) =>
+						new Promise((resolve, reject) => {
 							props.setData([...props.data, newData]);
 
 							resolve();
-						});
-					},
+						}),
 					onRowUpdate: (newData: any, oldData: any) =>
 						new Promise((resolve, reject) => {
 							const dataUpdate = [...props.data];
@@ -203,4 +118,5 @@ const TableRods = (props: RodsProps) => {
 		</div>
 	);
 };
-export default TableRods;
+
+export default TableNodes;

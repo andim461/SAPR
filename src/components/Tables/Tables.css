@@ -1,4 +1,9 @@
 .tableRods{
-    height: 300px;
-    width: 650px;
+    margin-bottom: 50px;
+    width: 70%;
+    
+}
+.tableNodes{
+    
+    width: 29%;
 }
