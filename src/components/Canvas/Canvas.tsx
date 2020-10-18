@@ -9,22 +9,20 @@ interface CanvasProps {
 const Canvas = (props: CanvasProps) => {
     return (
         <div className="field">
-            {props.dataRods
-                ? props.dataRods.map((val, index) => (
-                      <Stage width={val.L + 1} height={val.A * 5 + 1}>
-                          <Layer>
-                              <Rect
-                                  x={0}
-                                  y={0}
-                                  height={val.A * 5}
-                                  width={val.L}
-                                  stroke="black"
-                                  closed
-                              />
-                          </Layer>
-                      </Stage>
-                  ))
-                : null}
+            {(props.dataRods || []).map((val, index) => (
+                <Stage width={val.L + 1} height={val.A * 5 + 1}>
+                    <Layer>
+                        <Rect
+                            x={0}
+                            y={0}
+                            height={val.A * 5}
+                            width={val.L}
+                            stroke="black"
+                            closed
+                        />
+                    </Layer>
+                </Stage>
+            ))}
         </div>
     );
 };

@@ -9,27 +9,25 @@ import Store from '../../interfaces/Store';
 
 interface PreProps {
     state: Store;
-    dataNodes: Array<Object>;
-    changeNodes: (data: Array<Object>) => void;
 }
 const Pre = (props: PreProps) => {
+    const whereProblem = !props.state.isNodesValid
+        ? 'узлов'
+        : !props.state.isRodsValid && 'стержней';
     return (
         <div className="preBody">
             <div className="tables">
                 <TableRods />
-                <TableNodes
-                    data={props.dataNodes}
-                    setData={props.changeNodes}
-                />
+                <TableNodes />
             </div>
-            {props.state.isDataGood ? (
-                <Canvas dataRods={props.state.rodsData} />
-            ) : (
+            {whereProblem ? (
                 <Alert className="alert" severity="error">
                     {' '}
                     <AlertTitle>Ошибка!</AlertTitle> Неправильная нумерация
-                    стержней{' '}
+                    {' ' + whereProblem}{' '}
                 </Alert>
+            ) : (
+                <Canvas dataRods={props.state.rodsData} />
             )}
         </div>
     );

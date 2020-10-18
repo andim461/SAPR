@@ -16,7 +16,7 @@ function App() {
                 <Header />
                 <Switch>
                     <Route path="/pre">
-                        <Pre dataNodes={nodesData} changeNodes={changeNodes} />
+                        <Pre />
                     </Route>
                     <Route path="/pro"></Route>
                     <Route path="/post"></Route>

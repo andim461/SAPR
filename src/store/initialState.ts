@@ -2,7 +2,9 @@ import Store from '../interfaces/Store';
 
 const initState: Store = {
 	rodsData: [],
-	isDataGood: true,
+	nodesData: [],
+	isRodsValid: true,
+	isNodesValid: true,
 };
 
 export default initState;

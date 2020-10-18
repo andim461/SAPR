@@ -18,6 +18,10 @@ import {
     Search,
     ViewColumn,
 } from '@material-ui/icons';
+import Store from '../../interfaces/Store';
+import {connect, MapStateToProps} from 'react-redux'; 
+import {updateDataNodes, } from '../../store/actions/tableActions';
+import NodesData from '../../interfaces/NodesData';
 
 const tableIcons: any = {
     Add: forwardRef((props, ref: any) => <AddBox {...props} ref={ref} />),
@@ -62,8 +66,9 @@ const tableIcons: any = {
 };
 
 interface NodesProps {
-    data: Array<Object>;
-    setData: (data: Array<Object>) => void;
+    state: Store,
+    updateDataNodes: (data: Array<NodesData>) => void,
+    
 }
 
 const TableNodes = (props: NodesProps) => {
@@ -86,7 +91,7 @@ const TableNodes = (props: NodesProps) => {
             <MaterialTable
                 title="Нагрузки в узлах"
                 columns={columns}
-                data={props.data}
+                data={props.state.nodesData}
                 options={{
                     search: false,
                     sorting: false,
@@ -97,25 +102,25 @@ const TableNodes = (props: NodesProps) => {
                 editable={{
                     onRowAdd: (newData: any) =>
                         new Promise((resolve, reject) => {
-                            props.setData([...props.data, newData]);
+                            props.updateDataNodes([...props.state.nodesData, newData]);
 
                             resolve();
                         }),
                     onRowUpdate: (newData: any, oldData: any) =>
                         new Promise((resolve, reject) => {
-                            const dataUpdate = [...props.data];
+                            const dataUpdate = [...props.state.nodesData];
                             const index = oldData.tableData.id;
                             dataUpdate[index] = newData;
-                            props.setData([...dataUpdate]);
+                            props.updateDataNodes([...dataUpdate]);
 
                             resolve();
                         }),
                     onRowDelete: (oldData: any) =>
                         new Promise((resolve, reject) => {
-                            const dataDelete = [...props.data];
+                            const dataDelete = [...props.state.nodesData];
                             const index = oldData.tableData.id;
                             dataDelete.splice(index, 1);
-                            props.setData([...dataDelete]);
+                            props.updateDataNodes([...dataDelete]);
 
                             resolve();
                         }),
@@ -124,5 +129,8 @@ const TableNodes = (props: NodesProps) => {
         </div>
     );
 };
+const mapStateToProps = (state: Store) => ({
+    state: state,
+});
 
-export default TableNodes;
+export default connect(mapStateToProps, { updateDataNodes })(TableNodes);

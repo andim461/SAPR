@@ -1,8 +1,10 @@
 import RodsData from './RodsData';
+import NodesData from './NodesData';
 interface Store {
     rodsData: Array<RodsData>;
-
-    isDataGood: boolean;
+    nodesData: Array <NodesData>,
+    isRodsValid: boolean;
+    isNodesValid: boolean;
 }
 
 export default Store;
