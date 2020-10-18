@@ -2,26 +2,26 @@ import React, { useState } from 'react';
 import TableRods from '../Tables/TableRods';
 import TableNodes from '../Tables/TableNodes';
 import './Pre.css';
-import RodsData from '../../interfaces/RodsData';
+import {connect} from 'react-redux';
 import Canvas from '../Canvas/Canvas';
 import { Alert, AlertTitle } from '@material-ui/lab';
+import Store from '../../interfaces/Store';
 
 interface PreProps {
-	dataRods: Array<RodsData>;
-	changeRods: (data: Array<RodsData>) => void;
+	state: Store,
 	dataNodes: Array<Object>;
 	changeNodes: (data: Array<Object>) => void;
-	isDataGood: boolean;
+	
 }
 const Pre = (props: PreProps) => {
 	return (
 		<div className="preBody">
 			<div className="tables">
-				<TableRods data={props.dataRods} setData={props.changeRods} />
+				<TableRods />
 				<TableNodes data={props.dataNodes} setData={props.changeNodes} />
 			</div>
-			{props.isDataGood ? (
-				<Canvas dataRods={props.dataRods} />
+			{props.state.isDataGood ? (
+				<Canvas dataRods={props.state.rodsData} />
 			) : (
 				<Alert className="alert" severity="error">
 					{' '}
@@ -31,4 +31,8 @@ const Pre = (props: PreProps) => {
 		</div>
 	);
 };
-export default Pre;
+const mapStateToProps = (state: Store) => ({
+	state: state,
+
+  });
+export default connect(mapStateToProps)(Pre);

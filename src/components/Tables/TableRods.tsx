@@ -1,6 +1,7 @@
 import React, { useState, forwardRef } from 'react';
 import MaterialTable from 'material-table';
 import './Tables.css';
+import {connect} from 'react-redux';
 import {
 	AddBox,
 	ArrowDownward,
@@ -18,7 +19,10 @@ import {
 	Search,
 	ViewColumn,
 } from '@material-ui/icons';
+
 import RodsData from '../../interfaces/RodsData';
+import Store from '../../interfaces/Store';
+import {updateDataRods} from '../../store/actions/tableActions';
 
 const tableIcons: any = {
 	Add: forwardRef((props, ref: any) => <AddBox {...props} ref={ref} />),
@@ -57,8 +61,8 @@ const tableIcons: any = {
 };
 
 interface RodsProps {
-	data: Array<RodsData>;
-	setData: (data: Array<RodsData>) => void;
+	state: Store,
+	updateDataRods: (data:Array<RodsData>)=> void,
 }
 const TableRods = (props: RodsProps) => {
 	const [columns, setColumns] = useState<Array<Object>>([
@@ -148,9 +152,7 @@ const TableRods = (props: RodsProps) => {
 			filtering: false,
 			align: 'center',
 			validate: (data: RodsData) => {
-				if (data.q <= 0) {
-					return 'Введенное число должно быть положительным';
-				} else if (isNaN(data.q)) {
+				if (isNaN(data.q)) {
 					return 'Поле не должно быть пустым';
 				} else {
 					return true;
@@ -161,10 +163,11 @@ const TableRods = (props: RodsProps) => {
 
 	return (
 		<div className="tableRods">
+			
 			<MaterialTable
 				title="Стержни"
 				columns={columns}
-				data={props.data}
+				data={props.state.rodsData}
 				options={{
 					search: false,
 					sorting: false,
@@ -175,26 +178,27 @@ const TableRods = (props: RodsProps) => {
 				editable={{
 					onRowAdd: (newData: any) => {
 						return new Promise((resolve, reject) => {
-							props.setData([...props.data, newData]);
-
+							
+							props.updateDataRods([...props.state.rodsData, newData]);
+							
 							resolve();
 						});
 					},
 					onRowUpdate: (newData: any, oldData: any) =>
 						new Promise((resolve, reject) => {
-							const dataUpdate = [...props.data];
+							const dataUpdate = [...props.state.rodsData];
 							const index = oldData.tableData.id;
 							dataUpdate[index] = newData;
-							props.setData([...dataUpdate]);
+							props.updateDataRods([...dataUpdate]);
 
 							resolve();
 						}),
 					onRowDelete: (oldData: any) =>
 						new Promise((resolve, reject) => {
-							const dataDelete = [...props.data];
+							const dataDelete = [...props.state.rodsData];
 							const index = oldData.tableData.id;
 							dataDelete.splice(index, 1);
-							props.setData([...dataDelete]);
+							props.updateDataRods([...dataDelete]);
 
 							resolve();
 						}),
@@ -203,4 +207,9 @@ const TableRods = (props: RodsProps) => {
 		</div>
 	);
 };
-export default TableRods;
+const mapStateToProps = (state: Store) => ({
+	state: state,
+
+  });
+
+export default connect(mapStateToProps, {updateDataRods})(TableRods);
