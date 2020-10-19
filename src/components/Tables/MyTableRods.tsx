@@ -145,7 +145,7 @@ const MyTableRods = (props: TableProps) => {
 
     return (
         <Paper className="tableRods">
-            <Typography variant="h6" id="tableTitle" component="div">
+            <Typography className='tableTitle' variant="h5" id="tableTitle" component="div">
                 Стержни
             </Typography>
             <TableContainer>
@@ -166,7 +166,7 @@ const MyTableRods = (props: TableProps) => {
                             <TableCell align="right">
                                 Распределенные нагрузки&nbsp;(g)
                             </TableCell>
-                            <TableCell>Action</TableCell>
+                            <TableCell align="right">Action</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>

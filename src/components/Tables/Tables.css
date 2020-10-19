@@ -13,3 +13,10 @@
     background-color: black;
     color: white;
 }
+.tableTitle{
+    margin-top: 15px;
+    margin-left: 15px;
+    display: flex;
+    justify-content: center;
+    
+}

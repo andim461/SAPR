@@ -75,7 +75,7 @@ const MyTableNodes = (props: TableProps) => {
 
     return (
         <Paper className="tableNodes">
-            <Typography variant="h6" id="tableTitle" component="div">
+            <Typography className='tableTitle' variant="h5" id="tableTitle" component="div">
                 Нагрузки в узлах
             </Typography>
             <TableContainer>
