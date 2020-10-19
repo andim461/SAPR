@@ -5,6 +5,7 @@ import RodsData from '../../interfaces/RodsData';
 import NodesData from '../../interfaces/NodesData';
 import validRods from '../actionCreators/validRods';
 import validNodes from '../actionCreators/validNodes';
+import store from '../store';
 import { range, isEqual, sortBy } from 'lodash';
 
 export const updateDataRods = (data: Array<RodsData>) => (
@@ -22,9 +23,10 @@ export const updateDataNodes = (data: Array<NodesData>) => (dispatch: Dispatch<a
     data = sortBy(data, ({j}) => j);
     dispatch(updateNodes(data));
     
-    const sortedIndexes = data.map(({j}) => j);
-    const isGood = (new Set(sortedIndexes).size === sortedIndexes.length);
-    //проверить на превышение допустимых значений (по стержню) TODO!
+    // const sortedIndexes = data.map(({j}) => j);
+    //const isGood = (new Set(sortedIndexes).size === sortedIndexes.length);
+    const isGood = store.getState().rodsData.length >= data[data.length-1].j;
+
     dispatch(validNodes(isGood));
     
 

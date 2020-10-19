@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import TableRods from '../Tables/TableRods';
-import TableNodes from '../Tables/TableNodes';
+import MyTableRods from '../Tables/MyTableRods';
+import MyTableNodes from '../Tables/MyTableNodes';
 import './Pre.css';
 import { connect } from 'react-redux';
 import Canvas from '../Canvas/Canvas';
@@ -17,8 +17,8 @@ const Pre = (props: PreProps) => {
     return (
         <div className="preBody">
             <div className="tables">
-                <TableRods />
-                <TableNodes />
+                <MyTableRods />
+                <MyTableNodes />
             </div>
             {whereProblem ? (
                 <Alert className="alert" severity="error">

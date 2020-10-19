@@ -1,9 +1,15 @@
 .tableRods{
+    margin-top: 10px;
     margin-bottom: 50px;
     width: 70%;
     
 }
 .tableNodes{
-    
+    margin-top: 10px;
+    margin-bottom: 50px;
     width: 29%;
+}
+.tableHead{
+    background-color: black;
+    color: white;
 }
