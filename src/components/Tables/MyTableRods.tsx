@@ -8,9 +8,12 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import RodsData from '../../interfaces/RodsData';
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import './Tables.css';
+import IconButton from '@material-ui/core/IconButton';
+import { AddCircle } from '@material-ui/icons';
+import EditIcon from '@material-ui/icons/Edit';
+import DeleteIcon from '@material-ui/icons/Delete';
 import Store from '../../interfaces/Store';
 import { connect } from 'react-redux';
 import { updateDataRods } from '../../store/actions/tableActions';
@@ -37,6 +40,17 @@ const MyTableRods = (props: TableProps) => {
         const dataDelete = [...props.state.rodsData];
         dataDelete.splice(key, 1);
         props.updateDataRods([...dataDelete]);
+    };
+    const handleEdit = (key: number) => {
+        const dataDelete = [...props.state.rodsData];
+        const deleted = dataDelete.splice(key, 1);
+        props.updateDataRods([...dataDelete]);
+        setNum(String(deleted[0].i));
+        setLen(String(deleted[0].L));
+        setSqu(String(deleted[0].A));
+        setMod(String(deleted[0].E));
+        setNap(String(deleted[0].S));
+        setNag(String(deleted[0].q));
     };
 
     const handleAdd = () => {
@@ -145,7 +159,12 @@ const MyTableRods = (props: TableProps) => {
 
     return (
         <Paper className="tableRods">
-            <Typography className='tableTitle' variant="h5" id="tableTitle" component="div">
+            <Typography
+                className="tableTitle"
+                variant="h5"
+                id="tableTitle"
+                component="div"
+            >
                 Стержни
             </Typography>
             <TableContainer>
@@ -166,7 +185,7 @@ const MyTableRods = (props: TableProps) => {
                             <TableCell align="right">
                                 Распределенные нагрузки&nbsp;(g)
                             </TableCell>
-                            <TableCell align="right">Action</TableCell>
+                            <TableCell align="right">Действия</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -181,15 +200,26 @@ const MyTableRods = (props: TableProps) => {
                                 <TableCell align="right">{row.S}</TableCell>
                                 <TableCell align="right">{row.q}</TableCell>
                                 <TableCell align="right">
-                                    <Button
-                                        variant="outlined"
-                                        color="secondary"
-                                        size="small"
-                                        onClick={(e) => handleDelete(ind)}
-                                    >
-                                        {' '}
-                                        Удалить{' '}
-                                    </Button>
+                                    <div className="action">
+                                        <IconButton
+                                            color="secondary"
+                                            size="small"
+                                            onClick={(e) => handleDelete(ind)}
+                                        >
+                                            <DeleteIcon
+                                                style={{ fontSize: 20 }}
+                                            />
+                                        </IconButton>
+                                        <IconButton
+                                            color="secondary"
+                                            size="small"
+                                            onClick={(e) => handleEdit(ind)}
+                                        >
+                                            <EditIcon
+                                                style={{ fontSize: 20 }}
+                                            />
+                                        </IconButton>
+                                    </div>
                                 </TableCell>
                             </TableRow>
                         ))}
@@ -260,16 +290,14 @@ const MyTableRods = (props: TableProps) => {
                                     onChange={onNagChange}
                                 />
                             </TableCell>
-                            <TableCell align="right">
-                                <Button
-                                    variant="outlined"
+                            <TableCell align="center">
+                                <IconButton
                                     color="secondary"
                                     size="small"
                                     onClick={(e) => handleAdd()}
                                 >
-                                    {' '}
-                                    Добавить{' '}
-                                </Button>
+                                    <AddCircle style={{ fontSize: 25 }} />
+                                </IconButton>
                             </TableCell>
                         </TableRow>
                     </TableBody>

@@ -19,15 +19,21 @@ export const updateDataRods = (data: Array<RodsData>) => (
 
     dispatch(validRods(isGood));
 };
-export const updateDataNodes = (data: Array<NodesData>) => (dispatch: Dispatch<any>): void =>{
-    data = sortBy(data, ({j}) => j);
+export const updateDataNodes = (data: Array<NodesData>) => (
+    dispatch: Dispatch<any>
+): void => {
+    data = sortBy(data, ({ j }) => j);
     dispatch(updateNodes(data));
-    
+
     // const sortedIndexes = data.map(({j}) => j);
     //const isGood = (new Set(sortedIndexes).size === sortedIndexes.length);
-    const isGood = store.getState().rodsData.length >= data[data.length-1].j;
-
-    dispatch(validNodes(isGood));
+    const lastNode = data[data.length - 1];
+    if (lastNode) {
+        const isGood = store.getState().rodsData.length >= lastNode.j;
+        dispatch(validNodes(isGood));
+    }
+    else{
+        dispatch(validNodes(true));
+    }
     
-
 };

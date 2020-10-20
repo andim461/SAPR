@@ -10,6 +10,10 @@ import NodesData from '../../interfaces/NodesData';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+import IconButton from '@material-ui/core/IconButton';
+import { AddCircle } from '@material-ui/icons';
+import EditIcon from '@material-ui/icons/Edit';
+import DeleteIcon from '@material-ui/icons/Delete';
 import './Tables.css';
 import Store from '../../interfaces/Store';
 import { connect } from 'react-redux';
@@ -22,14 +26,21 @@ interface TableProps {
 
 const MyTableNodes = (props: TableProps) => {
     const [num, setNum] = useState<string>('');
-    const [nap, setNap] = useState<string>('');
+    const [nag, setNag] = useState<string>('');
     const [isNumOkay, setNumOkay] = useState<boolean>(true);
-    const [isNapOkay, setNapOkay] = useState<boolean>(true);
+    const [isNagOkay, setNagOkay] = useState<boolean>(true);
 
     const handleDelete = (key: number) => {
         const dataDelete = [...props.state.nodesData];
         dataDelete.splice(key, 1);
         props.updateDataNodes([...dataDelete]);
+    };
+    const handleEdit = (key: number) => {
+        const dataDelete = [...props.state.nodesData];
+        const deleted = dataDelete.splice(key, 1);
+        props.updateDataNodes([...dataDelete]);
+        setNum(String(deleted[0].j));
+        setNag(String(deleted[0].F));
     };
     const handleAdd = () => {
         let isGood: boolean = true;
@@ -38,22 +49,22 @@ const MyTableNodes = (props: TableProps) => {
             setNumOkay(false);
             isGood = false;
         }
-        if (nap === undefined || nap === '') {
-            setNapOkay(false);
+        if (nag === undefined || nag === '') {
+            setNagOkay(false);
             isGood = false;
         }
 
-        if (isGood && isNumOkay && isNapOkay) {
+        if (isGood && isNumOkay && isNagOkay) {
             const newData: NodesData = {
                 j: Number(num),
-                F: Number(nap),
+                F: Number(nag),
             };
             props.updateDataNodes([...props.state.nodesData, newData]);
             setNum('');
-            setNap('');
+            setNag('');
 
             setNumOkay(true);
-            setNapOkay(true);
+            setNagOkay(true);
         }
     };
 
@@ -65,17 +76,22 @@ const MyTableNodes = (props: TableProps) => {
             setNumOkay(false);
         } else setNumOkay(true);
     };
-    const onNapChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const onNagChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const numb = Number(e.target.value);
-        setNap(e.target.value);
+        setNag(e.target.value);
         if (isNaN(numb) || numb <= 0) {
-            setNapOkay(false);
-        } else setNapOkay(true);
+            setNagOkay(false);
+        } else setNagOkay(true);
     };
 
     return (
         <Paper className="tableNodes">
-            <Typography className='tableTitle' variant="h5" id="tableTitle" component="div">
+            <Typography
+                className="tableTitle"
+                variant="h5"
+                id="tableTitle"
+                component="div"
+            >
                 Нагрузки в узлах
             </Typography>
             <TableContainer>
@@ -83,7 +99,7 @@ const MyTableNodes = (props: TableProps) => {
                     <TableHead>
                         <TableRow>
                             <TableCell>№ узла</TableCell>
-                            <TableCell align="center">Напряжение</TableCell>
+                            <TableCell align="center">Нагрузка</TableCell>
                             <TableCell align="right">Action</TableCell>
                         </TableRow>
                     </TableHead>
@@ -94,16 +110,27 @@ const MyTableNodes = (props: TableProps) => {
                                     {row.j}
                                 </TableCell>
                                 <TableCell align="center">{row.F}</TableCell>
-                                <TableCell align="right">
-                                    <Button
-                                        variant="outlined"
-                                        color="secondary"
-                                        size="small"
-                                        onClick={(e) => handleDelete(ind)}
-                                    >
-                                        {' '}
-                                        Удалить{' '}
-                                    </Button>
+                                <TableCell align="center">
+                                    <div className="action">
+                                        <IconButton
+                                            color="secondary"
+                                            size="small"
+                                            onClick={(e) => handleDelete(ind)}
+                                        >
+                                            <DeleteIcon
+                                                style={{ fontSize: 20 }}
+                                            />
+                                        </IconButton>
+                                        <IconButton
+                                            color="secondary"
+                                            size="small"
+                                            onClick={(e) => handleEdit(ind)}
+                                        >
+                                            <EditIcon
+                                                style={{ fontSize: 20 }}
+                                            />
+                                        </IconButton>
+                                    </div>
                                 </TableCell>
                             </TableRow>
                         ))}
@@ -122,24 +149,22 @@ const MyTableNodes = (props: TableProps) => {
                             <TableCell align="right">
                                 <TextField
                                     id="outlined-basic"
-                                    error={!isNapOkay}
+                                    error={!isNagOkay}
                                     label="Напряжение"
                                     variant="outlined"
                                     size="small"
-                                    value={nap}
-                                    onChange={onNapChange}
+                                    value={nag}
+                                    onChange={onNagChange}
                                 />
                             </TableCell>
                             <TableCell align="right">
-                                <Button
-                                    variant="outlined"
+                                <IconButton
                                     color="secondary"
                                     size="small"
                                     onClick={(e) => handleAdd()}
                                 >
-                                    {' '}
-                                    Добавить{' '}
-                                </Button>
+                                    <AddCircle style={{ fontSize: 25 }} />
+                                </IconButton>
                             </TableCell>
                         </TableRow>
                     </TableBody>
