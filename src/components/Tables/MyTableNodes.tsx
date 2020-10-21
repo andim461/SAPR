@@ -100,7 +100,7 @@ const MyTableNodes = (props: TableProps) => {
                         <TableRow>
                             <TableCell>№ узла</TableCell>
                             <TableCell align="center">Нагрузка</TableCell>
-                            <TableCell align="right">Action</TableCell>
+                            <TableCell align="right">Действия</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -150,7 +150,7 @@ const MyTableNodes = (props: TableProps) => {
                                 <TextField
                                     id="outlined-basic"
                                     error={!isNagOkay}
-                                    label="Напряжение"
+                                    label="Нагрузка"
                                     variant="outlined"
                                     size="small"
                                     value={nag}

@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import Canvas from '../Canvas/Canvas';
 import { Alert, AlertTitle } from '@material-ui/lab';
 import Store from '../../interfaces/Store';
+import PreField from '../PreField/PreField';
 
 interface PreProps {
     state: Store;
@@ -27,7 +28,7 @@ const Pre = (props: PreProps) => {
                     {' ' + whereProblem}{' '}
                 </Alert>
             ) : (
-                <Canvas dataRods={props.state.rodsData} />
+                <PreField />
             )}
         </div>
     );
