@@ -68,11 +68,12 @@ const PreField = (props: FieldProps) => {
                     
                 </div>
                 <div className='line'>
-                    <Typography variant='h6'> Правая заделка</Typography>
+                    
                 <CheckBox
                     checked={props.state.rightSupport}
                     onChange={onRightChange}
                 />
+                <Typography variant='h6'> Правая заделка</Typography>
                 </div>
             </div>
             <Canvas dataRods={props.state.rodsData} zoomRate={zoomRate} />
