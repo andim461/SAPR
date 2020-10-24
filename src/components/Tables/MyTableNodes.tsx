@@ -79,7 +79,7 @@ const MyTableNodes = (props: TableProps) => {
     const onNagChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const numb = Number(e.target.value);
         setNag(e.target.value);
-        if (isNaN(numb) || numb <= 0) {
+        if (isNaN(numb)) {
             setNagOkay(false);
         } else setNagOkay(true);
     };
@@ -99,7 +99,7 @@ const MyTableNodes = (props: TableProps) => {
                     <TableHead>
                         <TableRow>
                             <TableCell>№ узла</TableCell>
-                            <TableCell align="center">Нагрузка</TableCell>
+                            <TableCell align="center">Нагрузка&nbsp;(Н)</TableCell>
                             <TableCell align="right">Действия</TableCell>
                         </TableRow>
                     </TableHead>

@@ -14,7 +14,4 @@ app.listen(process.env.PORT || 3000);
 app.use(express.static(__dirname + './../public'));
 app.use('/', (req, res) => {
     res.sendFile(path.resolve(__dirname));
-})
-app.get('/pre',(req, res)=>{
-    res.sendFile(path.resolve(__dirname));
 });

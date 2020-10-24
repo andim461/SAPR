@@ -76,7 +76,7 @@ const PreField = (props: FieldProps) => {
                 <Typography variant='h6'> Правая заделка</Typography>
                 </div>
             </div>
-            <Canvas dataRods={props.state.rodsData} zoomRate={zoomRate} />
+            <Canvas dataRods={props.state.rodsData} dataNodes={props.state.nodesData} zoomRate={zoomRate} />
         </div>
     );
 };

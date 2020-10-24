@@ -18,6 +18,15 @@ export const updateDataRods = (data: Array<RodsData>) => (
     const isGood = isEqual(sortedIndexes, range(1, data.length + 1));
 
     dispatch(validRods(isGood));
+    const nodes = store.getState().nodesData;
+    const lastNode = nodes[nodes.length - 1];
+    if (lastNode) {
+        const isGood = store.getState().rodsData.length + 1 >= lastNode.j && store.getState().rodsData.length !== 0;
+        dispatch(validNodes(isGood));
+    }
+    else{
+        dispatch(validNodes(true));
+    }
 };
 export const updateDataNodes = (data: Array<NodesData>) => (
     dispatch: Dispatch<any>
@@ -29,7 +38,7 @@ export const updateDataNodes = (data: Array<NodesData>) => (
     //const isGood = (new Set(sortedIndexes).size === sortedIndexes.length);
     const lastNode = data[data.length - 1];
     if (lastNode) {
-        const isGood = store.getState().rodsData.length >= lastNode.j;
+        const isGood = store.getState().rodsData.length + 1 >= lastNode.j && store.getState().rodsData.length !== 0;
         dispatch(validNodes(isGood));
     }
     else{

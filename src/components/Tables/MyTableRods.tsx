@@ -172,18 +172,18 @@ const MyTableRods = (props: TableProps) => {
                     <TableHead>
                         <TableRow>
                             <TableCell>№ стержня</TableCell>
-                            <TableCell align="right">Длина</TableCell>
+                            <TableCell align="right">Длина&nbsp;(см)</TableCell>
                             <TableCell align="right">
-                                Площадь сечения&nbsp;(g)
+                                Площадь сечения&nbsp;(см^2)
                             </TableCell>
                             <TableCell align="right">
-                                Модуль упругости&nbsp;(g)
+                                Модуль упругости&nbsp;(Па)
                             </TableCell>
                             <TableCell align="right">
-                                Допускаемое напряжение&nbsp;(g)
+                                Допускаемое напряжение&nbsp;(МПа)
                             </TableCell>
                             <TableCell align="right">
-                                Распределенные нагрузки&nbsp;(g)
+                                Распределенные нагрузки&nbsp;(Н/м)
                             </TableCell>
                             <TableCell align="right">Действия</TableCell>
                         </TableRow>
