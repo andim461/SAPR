@@ -191,6 +191,7 @@ const Canvas = (props: CanvasProps) => {
                                         strokeWidth={
                                             (8 * props.zoomRate) / rate
                                         }
+                                        opacity={0.6}
                                         fill="blue"
                                         stroke="blue"
                                         points={[
@@ -210,6 +211,7 @@ const Canvas = (props: CanvasProps) => {
                                         }
                                         fill="blue"
                                         stroke="blue"
+                                        opacity={0.6}
                                         points={[
                                             node.x,
                                             node.y,
