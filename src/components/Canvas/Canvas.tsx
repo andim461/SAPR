@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
-import { Stage, Layer, Rect, Arrow } from 'react-konva';
+import { Stage, Layer, Rect, Arrow, Line } from 'react-konva';
 import './Canvas.css';
 import RodsData from '../../interfaces/RodsData';
 import NodesData from '../../interfaces/NodesData';
-import { Portal } from '@material-ui/core';
+import { linkSync } from 'fs';
 
 interface CanvasProps {
     dataRods: Array<RodsData>;
     zoomRate: number;
     dataNodes: Array<NodesData>;
+    leftSup: boolean;
+    rightSup: boolean;
 }
 interface Point {
     x: number;
@@ -44,17 +46,103 @@ const Canvas = (props: CanvasProps) => {
         rate;
     let accum = 50;
     const nodes: Array<Point> = [];
-
+    const leftSups = (y: number, height: number) => {
+        const lines = [];
+        for (let h = y; h <= y + height; h += 5) {
+            lines.push(
+                <Line points={[accum, h, accum - 20, h + 5]} stroke={'black'} />
+            );
+        }
+        return lines;
+    };
+    const rightSups = (y: number, height: number) => {
+        const lines = [];
+        for (let h = y; h <= y + height; h += 5) {
+            lines.push(
+                <Line points={[accum, h, accum + 20, h + 5]} stroke={'black'} />
+            );
+        }
+        return lines;
+    };
     return (
         <div className="top">
             <div> </div>
             <div className="field">
-                <Stage width={widthWindow + 100} height={heightWindow + 5}>
+                <Stage width={widthWindow + 100} height={heightWindow + 10}>
                     <Layer>
+                        {props.leftSup && props.dataRods.length
+                            ? leftSups(
+                                  heightWindow / 2 -
+                                      (props.dataRods[0].A *
+                                          5 *
+                                          props.zoomRate) /
+                                          rate /
+                                          2,
+                                  (props.dataRods[0].A * 5 * props.zoomRate) /
+                                      rate
+                              )
+                            : null}
+
                         {(props.dataRods || []).map((val, ind) => {
-                            const ret = (
+                            const arrows = [];
+                            const length = (val.L * props.zoomRate) / rate;
+
+                            if (val.q > 0) {
+                                for (
+                                    let x = accum + 1;
+                                    x < accum + 1 + length;
+                                    x += (40 * props.zoomRate) / rate
+                                ) {
+                                    const arrow = (
+                                        <Arrow
+                                            key={'arrow' + x}
+                                            strokeWidth={
+                                                (2 * props.zoomRate) / rate
+                                            }
+                                            stroke="red"
+                                            fill="red"
+                                            points={[
+                                                x,
+                                                heightWindow / 2,
+                                                x +
+                                                    (20 * props.zoomRate) /
+                                                        rate,
+                                                heightWindow / 2,
+                                            ]}
+                                        />
+                                    );
+                                    arrows.push(arrow);
+                                }
+                            } else if (val.q < 0) {
+                                for (
+                                    let x = accum + 1;
+                                    x < accum + 1 + length;
+                                    x += (40 * props.zoomRate) / rate
+                                ) {
+                                    const arrow = (
+                                        <Arrow
+                                            strokeWidth={
+                                                (2 * props.zoomRate) / rate
+                                            }
+                                            stroke="red"
+                                            fill="red"
+                                            points={[
+                                                x +
+                                                    (20 * props.zoomRate) /
+                                                        rate,
+                                                heightWindow / 2,
+                                                x,
+                                                heightWindow / 2,
+                                            ]}
+                                        />
+                                    );
+                                    arrows.push(arrow);
+                                }
+                            }
+
+                            const rect = (
                                 <Rect
-                                    key={val.i}
+                                    key={'rect' + val.i}
                                     x={accum + 1}
                                     y={
                                         heightWindow / 2 -
@@ -64,23 +152,35 @@ const Canvas = (props: CanvasProps) => {
                                         1
                                     }
                                     height={(val.A * 5 * props.zoomRate) / rate}
-                                    width={(val.L * props.zoomRate) / rate}
+                                    width={length}
                                     stroke="black"
                                 />
                             );
                             nodes.push({ x: accum + 1, y: heightWindow / 2 });
                             if (ind === props.dataRods.length - 1) {
                                 nodes.push({
-                                    x:
-                                        accum +
-                                        1 +
-                                        (val.L * props.zoomRate) / rate,
+                                    x: accum + 1 + length,
                                     y: heightWindow / 2,
                                 });
                             }
-                            accum += (val.L * props.zoomRate) / rate;
-                            return ret;
+                            accum += length;
+                            return [rect, ...arrows];
                         })}
+                        {props.rightSup && props.dataRods.length
+                            ? rightSups(
+                                  heightWindow / 2 -
+                                      (props.dataRods[props.dataRods.length - 1]
+                                          .A *
+                                          5 *
+                                          props.zoomRate) /
+                                          rate /
+                                          2,
+                                  (props.dataRods[props.dataRods.length - 1].A *
+                                      5 *
+                                      props.zoomRate) /
+                                      rate
+                              )
+                            : null}
                     </Layer>
                     <Layer>
                         {(props.dataNodes || []).map((val) => {
@@ -127,5 +227,4 @@ const Canvas = (props: CanvasProps) => {
         </div>
     );
 };
-
 export default Canvas;
