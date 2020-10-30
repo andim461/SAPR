@@ -95,7 +95,7 @@ const MyTableNodes = (props: TableProps) => {
                 Нагрузки в узлах
             </Typography>
             <TableContainer>
-                <Table>
+                <Table size='small'>
                     <TableHead>
                         <TableRow>
                             <TableCell>№ узла</TableCell>

@@ -14,3 +14,27 @@
     margin-left: 35%;
     margin-right: 35%;
 }
+.buttons{
+    display: flex;
+    justify-content: space-around;
+    margin-left: 25%;
+    margin-right: 25%;
+}
+.modal{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 26%;
+    height: 15%;
+    margin-top: 20%;
+    margin-left: 37%;
+    
+}
+
+.modalBody{
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

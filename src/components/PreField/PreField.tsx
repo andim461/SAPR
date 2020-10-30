@@ -39,16 +39,15 @@ const PreField = (props: FieldProps) => {
     };
     return (
         <div>
-            <div className='line'>
-                <div className='line'>
-                    <Typography variant='h6'>Левая заделка</Typography>
-                <CheckBox
-                    checked={props.state.leftSupport}
-                    onChange={onLeftChange}
-                />
+            <div className="line">
+                <div className="line">
+                    <Typography variant="h6">Левая заделка</Typography>
+                    <CheckBox
+                        checked={props.state.leftSupport}
+                        onChange={onLeftChange}
+                    />
                 </div>
-                <div className='line'>
-                    
+                <div className="line">
                     <IconButton
                         color="secondary"
                         size="small"
@@ -64,19 +63,22 @@ const PreField = (props: FieldProps) => {
                     >
                         <ZoomInIcon style={{ fontSize: 30 }} />
                     </IconButton>
-                    
-                    
                 </div>
-                <div className='line'>
-                    
-                <CheckBox
-                    checked={props.state.rightSupport}
-                    onChange={onRightChange}
-                />
-                <Typography variant='h6'> Правая заделка</Typography>
+                <div className="line">
+                    <CheckBox
+                        checked={props.state.rightSupport}
+                        onChange={onRightChange}
+                    />
+                    <Typography variant="h6"> Правая заделка</Typography>
                 </div>
             </div>
-            <Canvas dataRods={props.state.rodsData} dataNodes={props.state.nodesData} zoomRate={zoomRate} leftSup={props.state.leftSupport} rightSup={props.state.rightSupport} />
+            <Canvas
+                dataRods={props.state.rodsData}
+                dataNodes={props.state.nodesData}
+                zoomRate={zoomRate}
+                leftSup={props.state.leftSupport}
+                rightSup={props.state.rightSupport}
+            />
         </div>
     );
 };

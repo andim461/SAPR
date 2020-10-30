@@ -168,7 +168,7 @@ const MyTableRods = (props: TableProps) => {
                 Стержни
             </Typography>
             <TableContainer>
-                <Table>
+                <Table size='small'>
                     <TableHead>
                         <TableRow>
                             <TableCell>№ стержня</TableCell>

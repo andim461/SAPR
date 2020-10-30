@@ -26,7 +26,6 @@ const Canvas = (props: CanvasProps) => {
                     (window.screen.width - 100)
                 ).toFixed(0)
             ) + 1;
-        console.log(rate);
         return rate;
     };
     const rate = getZoom(props.dataRods);
@@ -74,11 +73,11 @@ const Canvas = (props: CanvasProps) => {
                             ? leftSups(
                                   heightWindow / 2 -
                                       (props.dataRods[0].A *
-                                          5 *
+                                          3 *
                                           props.zoomRate) /
                                           rate /
                                           2,
-                                  (props.dataRods[0].A * 5 * props.zoomRate) /
+                                  (props.dataRods[0].A * 3 * props.zoomRate) /
                                       rate
                               )
                             : null}
@@ -146,12 +145,12 @@ const Canvas = (props: CanvasProps) => {
                                     x={accum + 1}
                                     y={
                                         heightWindow / 2 -
-                                        (val.A * 5 * props.zoomRate) /
+                                        (val.A * 3 * props.zoomRate) /
                                             rate /
                                             2 +
                                         1
                                     }
-                                    height={(val.A * 5 * props.zoomRate) / rate}
+                                    height={(val.A * 3 * props.zoomRate) / rate}
                                     width={length}
                                     stroke="black"
                                 />
@@ -171,12 +170,12 @@ const Canvas = (props: CanvasProps) => {
                                   heightWindow / 2 -
                                       (props.dataRods[props.dataRods.length - 1]
                                           .A *
-                                          5 *
+                                          3 *
                                           props.zoomRate) /
                                           rate /
                                           2,
                                   (props.dataRods[props.dataRods.length - 1].A *
-                                      5 *
+                                      3 *
                                       props.zoomRate) /
                                       rate
                               )
