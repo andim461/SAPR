@@ -3,6 +3,7 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const fs = require('fs');
 const fileUpload = require('express-fileupload');
+const sslHeroku = require('heroku-ssl-redirect');
 
 const app = express();
 app.use(
@@ -17,6 +18,7 @@ app.use(
     })
 );
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(sslHeroku());
 
 app.post('/upload', async function (req, res) {
     const file = req.files.file;
