@@ -51,6 +51,12 @@ const MyTableRods = (props: TableProps) => {
         setMod(String(deleted[0].E));
         setNap(String(deleted[0].S));
         setNag(String(deleted[0].q));
+        setLenOkay(true);
+        setModOkay(true);
+        setNumOkay(true);
+        setNagOkay(true);
+        setNapOkay(true);
+        setSquOkay(true);
     };
 
     const handleAdd = () => {
@@ -168,7 +174,7 @@ const MyTableRods = (props: TableProps) => {
                 Стержни
             </Typography>
             <TableContainer>
-                <Table size='small'>
+                <Table size="small">
                     <TableHead>
                         <TableRow>
                             <TableCell>№ стержня</TableCell>

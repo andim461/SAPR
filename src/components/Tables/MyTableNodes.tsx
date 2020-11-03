@@ -41,6 +41,8 @@ const MyTableNodes = (props: TableProps) => {
         props.updateDataNodes([...dataDelete]);
         setNum(String(deleted[0].j));
         setNag(String(deleted[0].F));
+        setNumOkay(true);
+        setNagOkay(true);
     };
     const handleAdd = () => {
         let isGood: boolean = true;

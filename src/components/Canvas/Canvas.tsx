@@ -3,7 +3,7 @@ import { Stage, Layer, Rect, Arrow, Line } from 'react-konva';
 import './Canvas.css';
 import RodsData from '../../interfaces/RodsData';
 import NodesData from '../../interfaces/NodesData';
-import { linkSync } from 'fs';
+
 
 interface CanvasProps {
     dataRods: Array<RodsData>;
@@ -40,7 +40,7 @@ const Canvas = (props: CanvasProps) => {
             .map((val) => val.A)
             .sort((a, b) => a - b)
             .pop() || 0) *
-            5 *
+            3 *
             props.zoomRate) /
         rate;
     let accum = 50;
@@ -90,13 +90,13 @@ const Canvas = (props: CanvasProps) => {
                                 for (
                                     let x = accum + 1;
                                     x < accum + 1 + length;
-                                    x += (40 * props.zoomRate) / rate
+                                    x += (40 * props.zoomRate) 
                                 ) {
                                     const arrow = (
                                         <Arrow
                                             key={'arrow' + x}
                                             strokeWidth={
-                                                (2 * props.zoomRate) / rate
+                                                (2 * props.zoomRate) 
                                             }
                                             stroke="red"
                                             fill="red"
@@ -104,8 +104,7 @@ const Canvas = (props: CanvasProps) => {
                                                 x,
                                                 heightWindow / 2,
                                                 x +
-                                                    (20 * props.zoomRate) /
-                                                        rate,
+                                                    (20 * props.zoomRate) ,
                                                 heightWindow / 2,
                                             ]}
                                         />
@@ -116,19 +115,18 @@ const Canvas = (props: CanvasProps) => {
                                 for (
                                     let x = accum + 1;
                                     x < accum + 1 + length;
-                                    x += (40 * props.zoomRate) / rate
+                                    x += (40 * props.zoomRate)
                                 ) {
                                     const arrow = (
                                         <Arrow
                                             strokeWidth={
-                                                (2 * props.zoomRate) / rate
+                                                (2 * props.zoomRate)
                                             }
                                             stroke="red"
                                             fill="red"
                                             points={[
                                                 x +
-                                                    (20 * props.zoomRate) /
-                                                        rate,
+                                                    (20 * props.zoomRate),
                                                 heightWindow / 2,
                                                 x,
                                                 heightWindow / 2,
