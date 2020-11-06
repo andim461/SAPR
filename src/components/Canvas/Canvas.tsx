@@ -186,7 +186,7 @@ const Canvas = (props: CanvasProps) => {
                                 return (
                                     <Arrow
                                         strokeWidth={
-                                            (8 * props.zoomRate) / rate
+                                            (8 * props.zoomRate)
                                         }
                                         opacity={0.6}
                                         fill="blue"
@@ -195,7 +195,7 @@ const Canvas = (props: CanvasProps) => {
                                             node.x,
                                             node.y,
                                             node.x +
-                                                (40 * props.zoomRate) / rate,
+                                                (40 * props.zoomRate),
                                             node.y,
                                         ]}
                                     />
@@ -204,7 +204,7 @@ const Canvas = (props: CanvasProps) => {
                                 return (
                                     <Arrow
                                         strokeWidth={
-                                            (8 * props.zoomRate) / rate
+                                            (8 * props.zoomRate)
                                         }
                                         fill="blue"
                                         stroke="blue"
@@ -213,7 +213,7 @@ const Canvas = (props: CanvasProps) => {
                                             node.x,
                                             node.y,
                                             node.x -
-                                                (40 * props.zoomRate) / rate,
+                                                (40 * props.zoomRate),
                                             node.y,
                                         ]}
                                     />

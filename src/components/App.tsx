@@ -8,6 +8,7 @@ import {
     HashRouter,
 } from 'react-router-dom';
 import Pre from './Pre/Pre';
+import Pro from './Pro/Pro';
 
 function App() {
     return (
@@ -17,7 +18,10 @@ function App() {
                 <Route path="/pre">
                     <Pre />
                 </Route>
-                <Route path="/pro"></Route>
+                <Route path="/pro">
+                <Pro />
+                </Route>
+                    
                 <Route path="/post"></Route>
             </Switch>
         </div>
