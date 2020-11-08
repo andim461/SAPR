@@ -6,6 +6,7 @@ import {
     UPDATE_LEFT_SUPPORT,
     UPDATE_RIGHT_SUPPORT,
     UPDATE_STATE,
+    UPDATE_SOLUTION,
 } from '../actions/types';
 import Store from '../../interfaces/Store';
 import initialState from '../initialState';
@@ -26,6 +27,8 @@ export default function (state = initialState, action: any): Store {
             return { ...state, rightSupport: action.value };
         case UPDATE_STATE:
             return {...state, ...action.value};
+        case UPDATE_SOLUTION:
+            return {...state, solution: action.value};
         default:
             return state;
     }

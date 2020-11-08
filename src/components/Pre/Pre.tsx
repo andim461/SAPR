@@ -3,7 +3,6 @@ import MyTableRods from '../Tables/MyTableRods';
 import MyTableNodes from '../Tables/MyTableNodes';
 import './Pre.css';
 import { connect } from 'react-redux';
-import Canvas from '../Canvas/Canvas';
 import { Alert, AlertTitle } from '@material-ui/lab';
 import Store from '../../interfaces/Store';
 import PreField from '../PreField/PreField';
@@ -28,7 +27,7 @@ const Pre = (props: PreProps) => {
       };
     
     const handleDownload = async () => {
-        const data = props.state; 
+        const data = {...props.state, solution: null}; 
         const download = require('downloadjs');
         download(JSON.stringify(data), 'project.sapr');
     };

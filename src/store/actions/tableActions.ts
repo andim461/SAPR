@@ -6,6 +6,7 @@ import NodesData from '../../interfaces/NodesData';
 import validRods from '../actionCreators/validRods';
 import validNodes from '../actionCreators/validNodes';
 import store from '../store';
+import updateSolution from '../actionCreators/updateSolution';
 import { range, isEqual, sortBy } from 'lodash';
 
 export const updateDataRods = (data: Array<RodsData>) => (
@@ -27,6 +28,7 @@ export const updateDataRods = (data: Array<RodsData>) => (
     else{
         dispatch(validNodes(true));
     }
+    dispatch(updateSolution(null));
 };
 export const updateDataNodes = (data: Array<NodesData>) => (
     dispatch: Dispatch<any>
@@ -44,5 +46,6 @@ export const updateDataNodes = (data: Array<NodesData>) => (
     else{
         dispatch(validNodes(true));
     }
+    dispatch(updateSolution(null));
     
 };

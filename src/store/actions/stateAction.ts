@@ -1,4 +1,5 @@
 import updateState from '../actionCreators/updateState';
+import updateSolution from '../actionCreators/updateSolution';
 
 import { Dispatch } from 'redux';
 
@@ -13,7 +14,7 @@ export const uploadFileProject = (fd: FormData) => (
             console.log(myresponse.state);
             
             dispatch(updateState(JSON.parse(myresponse.state)));
-            
+            dispatch(updateSolution(null));
         
         });
         
