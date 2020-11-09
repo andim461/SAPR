@@ -9,6 +9,7 @@ import {
 } from 'react-router-dom';
 import Pre from './Pre/Pre';
 import Pro from './Pro/Pro';
+import Post from './Post/Post';
 
 function App() {
     return (
@@ -19,10 +20,11 @@ function App() {
                     <Pre />
                 </Route>
                 <Route path="/pro">
-                <Pro />
+                    <Pro />
                 </Route>
-                    
-                <Route path="/post"></Route>
+                <Route path="/post">
+                    <Post />
+                </Route>
             </Switch>
         </div>
     );
