@@ -13,19 +13,21 @@ import 'react-vis/dist/style.css';
 import Point from '../../interfaces/Point';
 interface PlotProps {
     data: Point[];
+    type: 'N' | 'U' | 'S';
 }
 const Plot = (props: PlotProps) => {
     const [crosshairValues, setCrosshair] = useState<Point | null>(null);
     const onMouseLeave = () => {
         setCrosshair(null);
     };
-    const setNearestX = (value: any, { index }: any) => {
+
+    const setNearest = (value: any, { index }: any) => {
         //setCrosshair(props.data.map((val, ind) => val[index]));
         setCrosshair(props.data[index]);
     };
-    const itemsFormat = (data: Point[]) =>{
-        return data.map((val) => ({title: 'y', value: val.y,}));
-    }
+    const itemsFormat = (data: Point[]) => {
+        return data.map((val) => ({ title: 'y', value: val.y }));
+    };
     return (
         <XYPlot onMouseLeave={onMouseLeave} width={300} height={300}>
             <VerticalGridLines />
@@ -40,11 +42,26 @@ const Plot = (props: PlotProps) => {
                     data={val}
                 />
             ))} */}
-            <AreaSeries opacity={0.5} fill='#757272' onNearestX={setNearestX} data={props.data} />
+            {props.type === 'N' || props.type === 'S' ? (
+                <AreaSeries
+                    opacity={0.5}
+                    fill="#757272"
+                    onNearestXY={setNearest}
+                    data={props.data}
+                />
+            ) : (
+                <AreaSeries
+                    opacity={0.5}
+                    fill="#757272"
+                    onNearestX={setNearest}
+                    data={props.data}
+                />
+            )}
 
-            <Crosshair itemsFormat={itemsFormat} values={[crosshairValues]}>
-                
-            </Crosshair>
+            <Crosshair
+                itemsFormat={itemsFormat}
+                values={[crosshairValues]}
+            ></Crosshair>
         </XYPlot>
     );
 };
