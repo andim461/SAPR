@@ -17,21 +17,20 @@ interface Point {
     y: number;
 }
 const Canvas = (props: CanvasProps) => {
-    const getZoom = (rods: Array<RodsData>) => {
-        const rodsLen = rods.map((val) => val.L);
+    const rodsLen = props.dataRods.map((val) => val.L * 100);
+    const getZoom = (rods: Array<number>) => {
         const rate =
             Number(
                 (
-                    rodsLen.reduce((prev, cur) => prev + cur, 0) /
+                    rods.reduce((prev, cur) => prev + cur, 0) /
                     (window.screen.width - 100)
                 ).toFixed(0)
             ) + 1;
         return rate;
     };
-    const rate = getZoom(props.dataRods);
+    const rate = getZoom(rodsLen);
     const widthWindow =
-        (props.dataRods
-            .map((val) => val.L)
+        (rodsLen
             .reduce((prev, curr) => prev + curr, 0) *
             props.zoomRate) /
         rate;
@@ -40,7 +39,7 @@ const Canvas = (props: CanvasProps) => {
             .map((val) => val.A)
             .sort((a, b) => a - b)
             .pop() || 0) *
-            3 *
+            30 *
             props.zoomRate) /
         rate;
     let accum = 50;
@@ -73,18 +72,18 @@ const Canvas = (props: CanvasProps) => {
                             ? leftSups(
                                   heightWindow / 2 -
                                       (props.dataRods[0].A *
-                                          3 *
+                                          30 *
                                           props.zoomRate) /
                                           rate /
                                           2,
-                                  (props.dataRods[0].A * 3 * props.zoomRate) /
+                                  (props.dataRods[0].A * 30 * props.zoomRate) /
                                       rate
                               )
                             : null}
 
                         {(props.dataRods || []).map((val, ind) => {
                             const arrows = [];
-                            const length = (val.L * props.zoomRate) / rate;
+                            const length = (val.L * 100 * props.zoomRate) / rate;
 
                             if (val.q > 0) {
                                 for (
@@ -143,12 +142,12 @@ const Canvas = (props: CanvasProps) => {
                                     x={accum + 1}
                                     y={
                                         heightWindow / 2 -
-                                        (val.A * 3 * props.zoomRate) /
+                                        (val.A * 30 * props.zoomRate) /
                                             rate /
                                             2 +
                                         1
                                     }
-                                    height={(val.A * 3 * props.zoomRate) / rate}
+                                    height={(val.A * 30 * props.zoomRate) / rate}
                                     width={length}
                                     stroke="black"
                                 />
@@ -168,12 +167,12 @@ const Canvas = (props: CanvasProps) => {
                                   heightWindow / 2 -
                                       (props.dataRods[props.dataRods.length - 1]
                                           .A *
-                                          3 *
+                                          30 *
                                           props.zoomRate) /
                                           rate /
                                           2,
-                                  (props.dataRods[props.dataRods.length - 1].A *
-                                      3 *
+                                  (props.dataRods[props.dataRods.length  - 1].A *
+                                      30 *
                                       props.zoomRate) /
                                       rate
                               )

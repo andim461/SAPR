@@ -17,7 +17,7 @@ const UPlot = (props: PostProps) => {
         let sumLen = 0;
         rodsLength.forEach((val, ind) => {
             const points: Point[] = [];
-            for (let i of range(0, val + 1)) {
+            for (let i of range(0, val + 1, 0.1)) {
                 const point: Point = {
                     x: i + sumLen,
                     y: solution.U[ind](i),

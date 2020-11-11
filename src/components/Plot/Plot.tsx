@@ -34,6 +34,12 @@ const Plot = (props: PlotProps) => {
             <HorizontalGridLines />
             <XAxis />
             <YAxis />
+            <AreaSeries
+                    opacity={0.5}
+                    fill="#757272"
+                    onNearestX={setNearest}
+                    data={props.data}
+                />
             {/* {props.data.map((val) => (
                 <AreaSeries
                     opacity={0.5}
@@ -42,7 +48,7 @@ const Plot = (props: PlotProps) => {
                     data={val}
                 />
             ))} */}
-            {props.type === 'N' || props.type === 'S' ? (
+            {/* {props.type === 'N' || props.type === 'S' ? (
                 <AreaSeries
                     opacity={0.5}
                     fill="#757272"
@@ -56,7 +62,7 @@ const Plot = (props: PlotProps) => {
                     onNearestX={setNearest}
                     data={props.data}
                 />
-            )}
+            )} */}
 
             <Crosshair
                 itemsFormat={itemsFormat}

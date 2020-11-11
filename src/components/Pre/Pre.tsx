@@ -37,7 +37,7 @@ const Pre = (props: PreProps) => {
     
     const upload = () => {
 
-        if (file.name.slice(-5) === '.sapr'){
+        if (file !== null && file.name.slice(-5) === '.sapr'){
             const fd = new FormData();
             fd.append('file', file);
             props.uploadFileProject(fd);

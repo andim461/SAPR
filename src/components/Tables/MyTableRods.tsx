@@ -178,7 +178,7 @@ const MyTableRods = (props: TableProps) => {
                     <TableHead>
                         <TableRow>
                             <TableCell>№ стержня</TableCell>
-                            <TableCell align="right">Длина&nbsp;(см)</TableCell>
+                            <TableCell align="right">Длина&nbsp;(м)</TableCell>
                             <TableCell align="right">
                                 Площадь сечения&nbsp;(см^2)
                             </TableCell>
