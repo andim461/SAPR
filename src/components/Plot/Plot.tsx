@@ -12,62 +12,27 @@ import {
 import 'react-vis/dist/style.css';
 import Point from '../../interfaces/Point';
 interface PlotProps {
-    data: Point[];
-    type: 'N' | 'U' | 'S';
+    data: Point[][];
+    type: 'N' | 'U';
 }
 const Plot = (props: PlotProps) => {
-    const [crosshairValues, setCrosshair] = useState<Point | null>(null);
-    const onMouseLeave = () => {
-        setCrosshair(null);
-    };
+    const titleY = props.type + ' (x)';
 
-    const setNearest = (value: any, { index }: any) => {
-        //setCrosshair(props.data.map((val, ind) => val[index]));
-        setCrosshair(props.data[index]);
-    };
-    const itemsFormat = (data: Point[]) => {
-        return data.map((val) => ({ title: 'y', value: val.y }));
-    };
     return (
-        <XYPlot onMouseLeave={onMouseLeave} width={300} height={300}>
+        <XYPlot 
+
+         width={800} height={230}>
             <VerticalGridLines />
             <HorizontalGridLines />
-            <XAxis />
-            <YAxis />
-            <AreaSeries
-                    opacity={0.5}
-                    fill="#757272"
-                    onNearestX={setNearest}
-                    data={props.data}
-                />
-            {/* {props.data.map((val) => (
+            <XAxis title='X' />
+            <YAxis title={titleY}/>
+
+            {props.data.map((val) => (
                 <AreaSeries
-                    opacity={0.5}
-                    fill="#757272"
-                    onNearestX={setNearestX}
+                    opacity={0.7}
                     data={val}
                 />
-            ))} */}
-            {/* {props.type === 'N' || props.type === 'S' ? (
-                <AreaSeries
-                    opacity={0.5}
-                    fill="#757272"
-                    onNearestXY={setNearest}
-                    data={props.data}
-                />
-            ) : (
-                <AreaSeries
-                    opacity={0.5}
-                    fill="#757272"
-                    onNearestX={setNearest}
-                    data={props.data}
-                />
-            )} */}
-
-            <Crosshair
-                itemsFormat={itemsFormat}
-                values={[crosshairValues]}
-            ></Crosshair>
+            ))}
         </XYPlot>
     );
 };

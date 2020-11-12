@@ -11,7 +11,7 @@ interface PostProps {
 const NPlot = (props: PostProps) => {
     const rodsLength = props.state.rodsData.map((val) => val.L);
     const solution = props.state.solution;
-    const dataN: Point[] = [];
+    const dataN: Point[][] = [];
     if (solution) {
         let sumLen = 0;
         rodsLength.forEach((val, ind) => {
@@ -22,10 +22,10 @@ const NPlot = (props: PostProps) => {
                     y: solution.N[ind](i),
                     y0: 0,
                 };
-                dataN.push(point);
-                // points.push(point);
+                //dataN.push(point);
+                 points.push(point);
             }
-            //dataN.push(points);
+            dataN.push(points);
             sumLen += val;
         });
     }

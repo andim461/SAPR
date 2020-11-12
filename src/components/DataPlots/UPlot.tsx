@@ -12,21 +12,22 @@ interface PostProps {
 const UPlot = (props: PostProps) => {
     const rodsLength = props.state.rodsData.map((val) => val.L);
     const solution = props.state.solution;
-    const dataU: Point[] = [];
+    const dataU: Point[][] = [];
     if (solution) {
         let sumLen = 0;
         rodsLength.forEach((val, ind) => {
             const points: Point[] = [];
-            for (let i of range(0, val + 1, 0.1)) {
+            for (let i of range(0, val + 0.01, 0.01)) {
+                i = Number(i.toFixed(2))
                 const point: Point = {
-                    x: i + sumLen,
+                    x: Number( (i + sumLen).toFixed(2)),
                     y: solution.U[ind](i),
                     y0: 0,
                 };
-                dataU.push(point);
-                // points.push(point);
+                //dataU.push(point);
+                 points.push(point);
             }
-            //dataN.push(points);
+            dataU.push(points);
             sumLen += val;
         });
     }

@@ -1,5 +1,28 @@
 .plotsField{
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    margin-right: 30px;
+    align-items: center;
+    align-content: center;
+    margin-top: 10px;
+    
+}
+.radio{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-bottom: 10px;
+}
+.title{
+    display: flex;
+    justify-content: center;
+}
+.field{
+    display: flex;
+    justify-content: center;
+}
+.into{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
