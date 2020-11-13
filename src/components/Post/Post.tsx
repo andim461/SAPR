@@ -9,6 +9,7 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import PlotsField from './PlotsField';
 import './Post.css';
+import TableField from './TableField';
 
 interface PostProps {
     state: Store;
@@ -58,7 +59,9 @@ const Post = (props: PostProps) => {
                             <PlotsField />
                         </div>
                     ) : value === 'Table' ? (
-                        <div></div>
+                        <div>
+                            <TableField />
+                        </div>
                     ) : null}
                 </div>
             ) : (

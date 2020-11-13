@@ -1,17 +1,14 @@
 import React, {useState} from 'react';
 import Store from '../../interfaces/Store';
-import NPlot from '../DataPlots/NPlot';
-import UPlot from '../DataPlots/UPlot';
 import { connect } from 'react-redux';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import './Post.css';
 import URodPlot from '../DataPlots/URodPlot';
 import NRodPlot from '../DataPlots/NRodPlot';
-import PointFinder from '../PointFinder/PointFinder';
+
 
 interface PlotsFieldProps {
     state: Store;
@@ -47,17 +44,9 @@ const PlostField = (props: PlotsFieldProps) => {
                 <div className='field'>
                     <div className='into'>
                         <NRodPlot index={rod - 1} />
-                        <PointFinder
-                            index={rod - 1}
-                            type={'N'}
-                        />
                     </div>
                     <div className='into'>
                         <URodPlot index={rod - 1} />
-                        <PointFinder
-                            index={rod - 1}
-                            type={'U'}
-                        />
                     </div>
                 </div>
             ) : null}
