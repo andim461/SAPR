@@ -28,7 +28,7 @@ const SinglePlot = (props: PlotProps) => {
         return list.map((val) => ({title: props.type + '(x)', value: val.y,}));
     };
     return (
-        <XYPlot onMouseLeave={onMouseLeave} width={500} height={230}>
+        <XYPlot onMouseLeave={onMouseLeave} width={430} height={230}>
             <VerticalGridLines />
             <HorizontalGridLines />
             <XAxis title="X" />
