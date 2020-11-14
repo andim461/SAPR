@@ -20,6 +20,15 @@
     justify-content: center;
     
 }
+.tablePost{
+    margin-top: 10px;
+    margin-bottom: 25px;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+}
 .action{
     display: flex;
     justify-content: space-around;

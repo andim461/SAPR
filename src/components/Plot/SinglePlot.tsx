@@ -13,7 +13,7 @@ import 'react-vis/dist/style.css';
 import Point from '../../interfaces/Point';
 interface PlotProps {
     data: Point[];
-    type: 'N' | 'U';
+    type: 'N' | 'U' | 'S';
 }
 const SinglePlot = (props: PlotProps) => {
     const titleY = props.type + ' (x)';
@@ -24,8 +24,8 @@ const SinglePlot = (props: PlotProps) => {
     const onNearestX = (value: any, {index}: any) => {
         setCrosshair(props.data[index]);
     };
-    const valueFormat = (list: Point[]) =>{
-        return {title: props.type + '(x)', value: list[0].y};
+    const itemsFormat = (list: Point[]) =>{
+        return list.map((val) => ({title: props.type + '(x)', value: val.y,}));
     };
     return (
         <XYPlot onMouseLeave={onMouseLeave} width={500} height={230}>
@@ -34,7 +34,7 @@ const SinglePlot = (props: PlotProps) => {
             <XAxis title="X" />
             <YAxis title={titleY} />
             <AreaSeries onNearestX={onNearestX} opacity={0.7} data={props.data} />
-            <Crosshair valueFormat={valueFormat} values={[crosshair]} />
+            <Crosshair itemsFormat={itemsFormat} values={[crosshair]} />
         </XYPlot>
     );
 };

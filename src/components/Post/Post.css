@@ -18,11 +18,38 @@
     justify-content: center;
 }
 .field{
+    margin-top: 20px;
     display: flex;
     justify-content: center;
 }
 .into{
     display: flex;
     flex-direction: column;
+    justify-content: center;
+}
+.tableTop{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.tableField{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+}
+.table{
+    display: flex;
+    justify-content: center;
+}
+.downloadButton{
+    margin-top: 10px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+}
+.rodPlots{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
 }

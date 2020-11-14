@@ -26,7 +26,7 @@ interface TableProps {
 const PostTable = (props: TableProps) => {
     
     return (
-        <Paper className="tableNodes">
+        <Paper className='tablePost' >
             <Typography
                 className="tableTitle"
                 variant="h5"
@@ -39,7 +39,7 @@ const PostTable = (props: TableProps) => {
                 <Table size='small'>
                     <TableHead>
                         <TableRow>
-                            <TableCell>X</TableCell>
+                            <TableCell align="center">X</TableCell>
                             <TableCell align="center">N(x)</TableCell>
                             <TableCell align="center">U(x)</TableCell>
                             <TableCell align="center">S(x)</TableCell>

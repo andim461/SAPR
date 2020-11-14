@@ -24,7 +24,7 @@ const Post = (props: PostProps) => {
     return (
         <div>
             {solution ? (
-                <div className="plotsField">
+                <div >
                     <RadioGroup
                         aria-label="data"
                         name="data"
@@ -50,7 +50,7 @@ const Post = (props: PostProps) => {
                         </div>
                     </RadioGroup>
                     {value === 'Dist' ? (
-                        <div>
+                        <div className="plotsField">
                             <NPlot />
                             <UPlot />
                         </div>

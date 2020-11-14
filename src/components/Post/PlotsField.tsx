@@ -8,6 +8,7 @@ import Select from '@material-ui/core/Select';
 import './Post.css';
 import URodPlot from '../DataPlots/URodPlot';
 import NRodPlot from '../DataPlots/NRodPlot';
+import SRodPlot from '../DataPlots/SRodPlot';
 
 
 interface PlotsFieldProps {
@@ -23,7 +24,7 @@ const PlostField = (props: PlotsFieldProps) => {
     };
 
     return (
-        <div>
+        <div className='rodPlots'>
             <FormControl>
                 <InputLabel id="demo-simple-select-label">
                     Стержень
@@ -48,6 +49,10 @@ const PlostField = (props: PlotsFieldProps) => {
                     <div className='into'>
                         <URodPlot index={rod - 1} />
                     </div>
+                    <div className='into'>
+                        <SRodPlot index={rod - 1} />
+                    </div>
+                    
                 </div>
             ) : null}
         </div>
