@@ -51,7 +51,7 @@ const Post = (props: PostProps) => {
                 rodNum++;
             }
             const num = rodNum === 0 ? Number(x) : Number(x) - props.state.rodsData.slice(0, rodNum).reduce((prev, curr) => prev + curr.L, 0);
-            if (Number(x) !== len && Number(x) !== 0) {
+            if (Number(x) !== len && Number(x) !== 0 && num === 0) {
                 const N1 = solution.N[rodNum];
                 const N2 = solution.N[rodNum + 1];
                 const U1 = solution.U[rodNum];
