@@ -114,7 +114,7 @@ const calc = (store: Store): Solution => {
     console.log(`b: ${vectorB}`);
 
     const deltas = gaussJordan(matrixA, vectorB).map((val) =>
-        Number(val.toFixed(15))
+        Number(val.toFixed(14))
     );
 
     console.log(`deltas: ${deltas}`);
