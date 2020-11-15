@@ -53,3 +53,8 @@
     align-items: center;
     justify-content: center;
 }
+.pointFind{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}

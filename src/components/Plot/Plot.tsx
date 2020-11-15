@@ -21,7 +21,7 @@ const Plot = (props: PlotProps) => {
     return (
         <XYPlot 
 
-         width={800} height={230}>
+         width={800} height={200}>
             <VerticalGridLines />
             <HorizontalGridLines />
             <XAxis title='X' />

@@ -16,6 +16,9 @@ function App() {
         <div className="App">
             <Header />
             <Switch>
+                {/* <Route path='/'>
+                    <Title/>
+                </Route> */}
                 <Route path="/pre">
                     <Pre />
                 </Route>
