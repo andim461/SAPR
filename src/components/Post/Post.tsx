@@ -50,8 +50,9 @@ const Post = (props: PostProps) => {
                 summ += props.state.rodsData[i].L; 
                 rodNum++;
             }
-            const num = rodNum === 0 ? Number(x) : Number(x) - props.state.rodsData.slice(0, rodNum).reduce((prev, curr) => prev + curr.L, 0);
-            if (Number(x) !== len && Number(x) !== 0 && num === 0) {
+            const num = Number(( Number(x) - props.state.rodsData.slice(0, rodNum).reduce((prev, curr) => prev + curr.L, 0)).toFixed(3));
+            console.log(summ);
+            if (Number(x) !== len && Number(x) === summ) {
                 const N1 = solution.N[rodNum];
                 const N2 = solution.N[rodNum + 1];
                 const U1 = solution.U[rodNum];
