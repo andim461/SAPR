@@ -57,7 +57,8 @@ const PostTable = (props: TableProps) => {
                                 {val.Ux}
                             </TableCell>
                             <TableCell align='center'>
-                                {val.Sx}
+                                <Typography variant='subtitle2' color={val.red ? 'error' : 'initial'}>{val.Sx}
+                                </Typography>
                             </TableCell>
                         </TableRow>))}
                     </TableBody>

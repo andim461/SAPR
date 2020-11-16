@@ -48,7 +48,9 @@ const TableField = (props: TableFieldProps) => {
                 i += Number(delt)
             ) {
                 i = Number(i.toFixed(10));
-                dataTemp.push({ x: i, Nx: Nx(i), Ux: Ux(i), Sx: Sx(i) });
+                const Si = Sx(i);
+                const isRed = props.state.rodsData[rod - 1].S < Si || (-props.state.rodsData[rod - 1].S) > Si;
+                dataTemp.push({ x: i, Nx: Nx(i), Ux: Ux(i), Sx: Si, red: isRed });
             }
             setData(dataTemp);
         }

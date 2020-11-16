@@ -47,10 +47,17 @@ const Post = (props: PostProps) => {
             let summ = props.state.rodsData[0].L;
             let rodNum = 0;
             for (let i = 1; summ < Number(x); i++) {
-                summ += props.state.rodsData[i].L; 
+                summ += props.state.rodsData[i].L;
                 rodNum++;
             }
-            const num = Number(( Number(x) - props.state.rodsData.slice(0, rodNum).reduce((prev, curr) => prev + curr.L, 0)).toFixed(3));
+            const num = Number(
+                (
+                    Number(x) -
+                    props.state.rodsData
+                        .slice(0, rodNum)
+                        .reduce((prev, curr) => prev + curr.L, 0)
+                ).toFixed(3)
+            );
             console.log(summ);
             if (Number(x) !== len && Number(x) === summ) {
                 const N1 = solution.N[rodNum];
@@ -105,25 +112,25 @@ const Post = (props: PostProps) => {
                             <NPlot />
                             <UPlot />
                             <div>
-                                <div className='pointFind'>
-                                <TextField
-                                    id="outlined-basic"
-                                    error={!isXOkay}
-                                    label="X"
-                                    variant="outlined"
-                                    size="small"
-                                    value={x}
-                                    onChange={onXChange}
-                                />
-                                <Button
-                                    onClick={execute}
-                                    variant="contained"
-                                    color="secondary"
-                                >
-                                    Получить
-                                </Button>
+                                <div className="pointFind">
+                                    <TextField
+                                        id="outlined-basic"
+                                        error={!isXOkay}
+                                        label="X"
+                                        variant="outlined"
+                                        size="small"
+                                        value={x}
+                                        onChange={onXChange}
+                                    />
+                                    <Button
+                                        onClick={execute}
+                                        variant="contained"
+                                        color="secondary"
+                                    >
+                                        Получить
+                                    </Button>
                                 </div>
-                                
+
                                 <Typography>
                                     {' '}
                                     N(x) = {Nx.map((val) => val + '; ')}
@@ -136,7 +143,6 @@ const Post = (props: PostProps) => {
                                     {' '}
                                     U(x) = {Ux.map((val) => val + '; ')}
                                 </Typography>
-                                
                             </div>
                         </div>
                     ) : value === 'Plots' ? (
