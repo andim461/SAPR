@@ -35,7 +35,8 @@ const TableField = (props: TableFieldProps) => {
         const Ux = solution?.U[rod - 1];
         const Sx = solution?.S[rod - 1];
         let isGood: boolean = true;
-        if (delt === undefined || delt === '' || Number(delt) === 0 || isNaN(Number(delt))) {
+        const len = props.state.rodsData[rod - 1].L;
+        if (delt === undefined || delt === '' || Number(delt) === 0 || isNaN(Number(delt)) || len < Number(delt)) {
             setDeltOkay(false);
             isGood = false;
         }
@@ -44,7 +45,7 @@ const TableField = (props: TableFieldProps) => {
 
             for (
                 let i = 0;
-                i <= props.state.rodsData[rod - 1].L;
+                i <= len;
                 i += Number(delt)
             ) {
                 i = Number(i.toFixed(10));
@@ -66,6 +67,8 @@ const TableField = (props: TableFieldProps) => {
     };
 
     const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
+        setDelt('');
+        setDeltOkay(true);
         setRod(Number(event.target.value));
     };
 
