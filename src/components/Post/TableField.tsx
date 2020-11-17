@@ -69,6 +69,7 @@ const TableField = (props: TableFieldProps) => {
     const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
         setDelt('');
         setDeltOkay(true);
+        setData(null);
         setRod(Number(event.target.value));
     };
 
