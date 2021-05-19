@@ -7,7 +7,6 @@ import {
     HorizontalGridLines,
     AreaSeries,
     Crosshair,
-    LineSeries,
 } from 'react-vis';
 import 'react-vis/dist/style.css';
 import Point from '../../interfaces/Point';
@@ -18,14 +17,14 @@ interface PlotProps {
 const SinglePlot = (props: PlotProps) => {
     const titleY = props.type + ' (x)';
     const [crosshair, setCrosshair] = useState<Point | null>(null);
-    const onMouseLeave = ()=>{
+    const onMouseLeave = () => {
         setCrosshair(null);
-    }
-    const onNearestX = (value: any, {index}: any) => {
+    };
+    const onNearestX = (value: any, { index }: any) => {
         setCrosshair(props.data[index]);
     };
-    const itemsFormat = (list: Point[]) =>{
-        return list.map((val) => ({title: props.type + '(x)', value: val.y,}));
+    const itemsFormat = (list: Point[]) => {
+        return list.map((val) => ({ title: props.type + '(x)', value: val.y }));
     };
     return (
         <XYPlot onMouseLeave={onMouseLeave} width={430} height={230}>
@@ -33,7 +32,11 @@ const SinglePlot = (props: PlotProps) => {
             <HorizontalGridLines />
             <XAxis title="X" />
             <YAxis title={titleY} />
-            <AreaSeries onNearestX={onNearestX} opacity={0.7} data={props.data} />
+            <AreaSeries
+                onNearestX={onNearestX}
+                opacity={0.7}
+                data={props.data}
+            />
             <Crosshair itemsFormat={itemsFormat} values={[crosshair]} />
         </XYPlot>
     );

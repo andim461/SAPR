@@ -11,7 +11,6 @@ import {
     updateLeftSup,
     updateRightSup,
 } from '../../store/actions/supportActions';
-import RodsData from '../../interfaces/RodsData';
 import './PreField.css';
 
 interface FieldProps {

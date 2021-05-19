@@ -1,12 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Header from './Header/Header';
 import './App.css';
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    HashRouter,
-} from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import Pre from './Pre/Pre';
 import Pro from './Pro/Pro';
 import Post from './Post/Post';

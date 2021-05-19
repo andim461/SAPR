@@ -20,7 +20,6 @@ import { updateDataNodes } from '../../store/actions/tableActions';
 
 interface TableProps {
     state: Store;
-    updateDataNodes: (data: Array<NodesData>) => void;
 }
 
 const MyTableNodes = (props: TableProps) => {
@@ -32,12 +31,12 @@ const MyTableNodes = (props: TableProps) => {
     const handleDelete = (key: number) => {
         const dataDelete = [...props.state.nodesData];
         dataDelete.splice(key, 1);
-        props.updateDataNodes([...dataDelete]);
+        updateDataNodes([...dataDelete]);
     };
     const handleEdit = (key: number) => {
         const dataDelete = [...props.state.nodesData];
         const deleted = dataDelete.splice(key, 1);
-        props.updateDataNodes([...dataDelete]);
+        updateDataNodes([...dataDelete]);
         setNum(String(deleted[0].j));
         setNag(String(deleted[0].F));
         setNumOkay(true);
@@ -60,7 +59,7 @@ const MyTableNodes = (props: TableProps) => {
                 j: Number(num),
                 F: Number(nag),
             };
-            props.updateDataNodes([...props.state.nodesData, newData]);
+            updateDataNodes([...props.state.nodesData, newData]);
             setNum('');
             setNag('');
 
@@ -96,11 +95,13 @@ const MyTableNodes = (props: TableProps) => {
                 Нагрузки в узлах
             </Typography>
             <TableContainer>
-                <Table size='small'>
+                <Table size="small">
                     <TableHead>
                         <TableRow>
                             <TableCell>№ узла</TableCell>
-                            <TableCell align="center">Нагрузка&nbsp;(Н)</TableCell>
+                            <TableCell align="center">
+                                Нагрузка&nbsp;(Н)
+                            </TableCell>
                             <TableCell align="right">Действия</TableCell>
                         </TableRow>
                     </TableHead>

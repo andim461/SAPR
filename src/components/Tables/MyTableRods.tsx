@@ -20,7 +20,6 @@ import { updateDataRods } from '../../store/actions/tableActions';
 
 interface TableProps {
     state: Store;
-    updateDataRods: (data: Array<RodsData>) => void;
 }
 const MyTableRods = (props: TableProps) => {
     const [num, setNum] = useState<string>('');
@@ -39,12 +38,12 @@ const MyTableRods = (props: TableProps) => {
     const handleDelete = (key: number) => {
         const dataDelete = [...props.state.rodsData];
         dataDelete.splice(key, 1);
-        props.updateDataRods([...dataDelete]);
+        updateDataRods([...dataDelete]);
     };
     const handleEdit = (key: number) => {
         const dataDelete = [...props.state.rodsData];
         const deleted = dataDelete.splice(key, 1);
-        props.updateDataRods([...dataDelete]);
+        updateDataRods([...dataDelete]);
         setNum(String(deleted[0].i));
         setLen(String(deleted[0].L));
         setSqu(String(deleted[0].A));
@@ -103,7 +102,7 @@ const MyTableRods = (props: TableProps) => {
                 S: Number(nap),
                 q: Number(nag),
             };
-            props.updateDataRods([...props.state.rodsData, newData]);
+            updateDataRods([...props.state.rodsData, newData]);
             setLen('');
             setNum('');
             setNag('');

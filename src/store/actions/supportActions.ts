@@ -1,16 +1,10 @@
-import updateLeft from '../actionCreators/updateLeft';
-import updateRight from '../actionCreators/updateRight';
-import updateSolution from '../actionCreators/updateSolution';
-import store from '../store';
+import dispatch from '../dispatcher';
 
 export const updateLeftSup = (value: boolean) => {
-
-    store.dispatch(updateLeft(value));
-    store.dispatch(updateSolution(null));
-    
+    dispatch.updateLeft(value);
+    dispatch.updateSolution(null);
 };
 export const updateRightSup = (value: boolean) => {
-    
-    store.dispatch(updateRight(value));
-    store.dispatch(updateSolution(null));
+    dispatch.updateRight(value);
+    dispatch.updateSolution(null);
 };

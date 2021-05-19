@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Stage, Layer, Rect, Arrow, Line } from 'react-konva';
 import './Canvas.css';
 import RodsData from '../../interfaces/RodsData';
 import NodesData from '../../interfaces/NodesData';
-
 
 interface CanvasProps {
     dataRods: Array<RodsData>;
@@ -30,9 +29,7 @@ const Canvas = (props: CanvasProps) => {
     };
     const rate = getZoom(rodsLen);
     const widthWindow =
-        (rodsLen
-            .reduce((prev, curr) => prev + curr, 0) *
-            props.zoomRate) /
+        (rodsLen.reduce((prev, curr) => prev + curr, 0) * props.zoomRate) /
         rate;
     const heightWindow =
         ((props.dataRods
@@ -83,27 +80,25 @@ const Canvas = (props: CanvasProps) => {
 
                         {(props.dataRods || []).map((val, ind) => {
                             const arrows = [];
-                            const length = (val.L * 100 * props.zoomRate) / rate;
+                            const length =
+                                (val.L * 100 * props.zoomRate) / rate;
 
                             if (val.q > 0) {
                                 for (
                                     let x = accum + 1;
                                     x < accum + 1 + length;
-                                    x += (40 * props.zoomRate) 
+                                    x += 40 * props.zoomRate
                                 ) {
                                     const arrow = (
                                         <Arrow
                                             key={'arrow' + x}
-                                            strokeWidth={
-                                                (2 * props.zoomRate) 
-                                            }
+                                            strokeWidth={2 * props.zoomRate}
                                             stroke="red"
                                             fill="red"
                                             points={[
                                                 x,
                                                 heightWindow / 2,
-                                                x +
-                                                    (20 * props.zoomRate) ,
+                                                x + 20 * props.zoomRate,
                                                 heightWindow / 2,
                                             ]}
                                         />
@@ -114,18 +109,15 @@ const Canvas = (props: CanvasProps) => {
                                 for (
                                     let x = accum + 1;
                                     x < accum + 1 + length;
-                                    x += (40 * props.zoomRate)
+                                    x += 40 * props.zoomRate
                                 ) {
                                     const arrow = (
                                         <Arrow
-                                            strokeWidth={
-                                                (2 * props.zoomRate)
-                                            }
+                                            strokeWidth={2 * props.zoomRate}
                                             stroke="red"
                                             fill="red"
                                             points={[
-                                                x +
-                                                    (20 * props.zoomRate),
+                                                x + 20 * props.zoomRate,
                                                 heightWindow / 2,
                                                 x,
                                                 heightWindow / 2,
@@ -147,7 +139,9 @@ const Canvas = (props: CanvasProps) => {
                                             2 +
                                         1
                                     }
-                                    height={(val.A * 30 * props.zoomRate) / rate}
+                                    height={
+                                        (val.A * 30 * props.zoomRate) / rate
+                                    }
                                     width={length}
                                     stroke="black"
                                 />
@@ -171,7 +165,7 @@ const Canvas = (props: CanvasProps) => {
                                           props.zoomRate) /
                                           rate /
                                           2,
-                                  (props.dataRods[props.dataRods.length  - 1].A *
+                                  (props.dataRods[props.dataRods.length - 1].A *
                                       30 *
                                       props.zoomRate) /
                                       rate
@@ -184,17 +178,14 @@ const Canvas = (props: CanvasProps) => {
                             if (val.F > 0) {
                                 return (
                                     <Arrow
-                                        strokeWidth={
-                                            (8 * props.zoomRate)
-                                        }
+                                        strokeWidth={8 * props.zoomRate}
                                         opacity={0.6}
                                         fill="blue"
                                         stroke="blue"
                                         points={[
                                             node.x,
                                             node.y,
-                                            node.x +
-                                                (40 * props.zoomRate),
+                                            node.x + 40 * props.zoomRate,
                                             node.y,
                                         ]}
                                     />
@@ -202,22 +193,20 @@ const Canvas = (props: CanvasProps) => {
                             } else if (val.F < 0) {
                                 return (
                                     <Arrow
-                                        strokeWidth={
-                                            (8 * props.zoomRate)
-                                        }
+                                        strokeWidth={8 * props.zoomRate}
                                         fill="blue"
                                         stroke="blue"
                                         opacity={0.6}
                                         points={[
                                             node.x,
                                             node.y,
-                                            node.x -
-                                                (40 * props.zoomRate),
+                                            node.x - 40 * props.zoomRate,
                                             node.y,
                                         ]}
                                     />
                                 );
                             }
+                            return null;
                         })}
                     </Layer>
                 </Stage>
